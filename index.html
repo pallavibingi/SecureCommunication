@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SecureComm</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="brand">🔐 SecureComm</div>
+  <div class="status">● System Secure</div>
+</nav>
+
+<div class="container">
+
+  <!-- STEP 1: KEY GENERATION -->
+  <div class="card">
+    <h2>Step 1 — Generate RSA Keys</h2>
+    <div id="pubKey"  class="output">Public Key: not generated</div>
+    <div id="privKey" class="output">Private Key: not generated</div>
+    <button onclick="genKeys()">🔑 Generate RSA-2048 Key Pair</button>
+  </div>
+
+  <!-- STEP 2: ENCRYPT -->
+  <div class="card">
+    <h2>Step 2 — Encrypt Message</h2>
+    <input  id="recipient" type="text"     placeholder="Recipient email" value="alice@example.com">
+    <textarea id="message" rows="3"        placeholder="Enter secret message...">The launch code is ALPHA-7-ZULU.</textarea>
+    <div id="cipherOut" class="output enc">Ciphertext: —</div>
+    <div id="keyOut"    class="output pur">Wrapped AES Key: —</div>
+    <div id="ivOut"     class="output amb">IV / Nonce: —</div>
+    <button onclick="doEncrypt()">🔒 Encrypt</button>
+    <button onclick="doSend()" id="sendBtn" disabled>📡 Send</button>
+  </div>
+
+  <!-- STEP 3: DECRYPT -->
+  <div class="card">
+    <h2>Step 3 — Decrypt Message</h2>
+    <div id="rxCipher" class="output enc">Ciphertext: —</div>
+    <div id="rxKey"    class="output pur">Wrapped Key: —</div>
+    <div id="result"   class="output">Decrypted message will appear here.</div>
+    <button onclick="doDecrypt()">🔓 Decrypt</button>
+  </div>
+
+  <!-- LOG -->
+  <div class="card">
+    <h2>⚡ Activity Log</h2>
+    <div id="log" class="log"></div>
+  </div>
+
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal hidden">
+  <div class="modal-box">
+    <p id="modalMsg"></p>
+    <button onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
